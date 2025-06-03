@@ -1,4 +1,29 @@
-import { icons, LucideIcon } from "lucide-react";
+import React from "react";
+import {
+  X,
+  ShoppingCart,
+  Heart,
+  Filter,
+  Search,
+  Star,
+  TrendingUp,
+  Shield,
+  Zap,
+  Target,
+} from "lucide-react";
+
+const icons = {
+  X,
+  ShoppingCart,
+  Heart,
+  Filter,
+  Search,
+  Star,
+  TrendingUp,
+  Shield,
+  Zap,
+  Target,
+};
 
 interface IconProps {
   name: keyof typeof icons;
@@ -7,20 +32,15 @@ interface IconProps {
   fallback?: keyof typeof icons;
 }
 
-const Icon = ({
+const Icon: React.FC<IconProps> = ({
   name,
   size = 24,
-  className,
-  fallback = "CircleAlert",
-}: IconProps) => {
-  const LucideIcon = icons[name] as LucideIcon;
-  const FallbackIcon = icons[fallback] as LucideIcon;
+  className = "",
+  fallback = "Shield",
+}) => {
+  const IconComponent = icons[name] || icons[fallback];
 
-  if (!LucideIcon) {
-    return <FallbackIcon size={size} className={className} />;
-  }
-
-  return <LucideIcon size={size} className={className} />;
+  return <IconComponent size={size} className={className} />;
 };
 
 export default Icon;
